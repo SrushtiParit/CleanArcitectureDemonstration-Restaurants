@@ -1,0 +1,55 @@
+@Restaurants.API_HostAddress = https://localhost:7082
+
+
+
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants
+
+###
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants/5519ae79-f0b9-4db0-3d92-08dde63eedd4
+
+###
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants
+
+###
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants
+
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants
+Content-Type: application/json
+
+{
+  "restaurantName": "The Spice House",
+  "description": "Authentic Indian cuisine with a modern twist.",
+  "category": "Indian",
+  "hasDelivery": true,
+  "contactNumber": "+1-555-987-6543",
+  "contactEmail": "info@spicehouse.com",
+  "city": "San Francisco",
+  "street": "123 Curry Lane",
+  "postalCode": "94-107"
+}
+
+###
+
+
+DELETE {{Restaurants.API_HostAddress}}/api/restaurants/{289a763b-2196-4440-b503-08dde1902add}
+
+###
+
+PATCH {{Restaurants.API_HostAddress}}/api/restaurants
+Content-Type: application/json
+
+{
+    "id": "5519ae79-f0b9-4db0-3d92-08dde63eedd4",
+    "restaurantName": "The Indian Spice",
+    "description": "Authentic Indian cuisine with a Spicy twist.",
+    "hasDelivery": false
+}
+
+###
