@@ -12,7 +12,7 @@ public class CreateRestaurantCommandHandler(ILogger<CreateRestaurantCommandHandl
 {
     public async Task<Guid> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Creating a new restaurant with name: ");
+        logger.LogInformation("Creating a new restaurant {@Restaurant}", request); //@Restaurant is serialized object
         var restaurant = mapper.Map<Restaurant>(request);
         Guid id = await restaurantRepository.Create(restaurant);
         return id;
