@@ -11,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-new CompactJsonFormatter();
+//new CompactJsonFormatter();
+builder.Services.AddSwaggerGen();
 builder.Services.AddAplication();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
@@ -29,6 +30,13 @@ var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
 
 await seeder.Seed();
 // Configure the HTTP request pipeline.
+
+app.UseSerilogRequestLogging();
+if (app.Environment.IsDevelopment())    //with this condition swagger will be available only in development environment not in production
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseHttpsRedirection();
 
