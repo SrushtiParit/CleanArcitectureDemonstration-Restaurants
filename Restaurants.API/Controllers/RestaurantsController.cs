@@ -49,25 +49,20 @@ namespace Restaurants.API.Controllers
         public async Task<IActionResult> DeleteById([FromRoute] Guid Id)
         {
             //var restaurant = await restaurantsService.GetRestaurantById(Id);
-            var isDelete = await mediator.Send(new DeleteRestaurantCommand(Id));
-            if (isDelete)
-            {
-                return NoContent();
-            }
-            return NotFound();
+            await mediator.Send(new DeleteRestaurantCommand(Id));
+
+            return NoContent();
         }
 
-        [HttpPatch]
+        [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateRestaurant (UpdateRestaurantCommand command)
+        public async Task<IActionResult> UpdateRestaurant ([FromRoute] Guid id, UpdateRestaurantCommand command)
         {
-            var isUpdate = await mediator.Send(command);
-            if (isUpdate)
-            {
-                return Ok();
-            }
-            return NotFound();
+            command.Id = id;
+            await mediator.Send(command);
+            
+            return Ok();
         }
     }
 
