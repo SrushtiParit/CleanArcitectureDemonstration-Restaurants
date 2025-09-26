@@ -5,6 +5,7 @@ using Restaurants.Application.Extensions;
 using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
+using Restaurants.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +31,7 @@ var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
 
 await seeder.Seed();
 // Configure the HTTP request pipeline.
-
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseSerilogRequestLogging();
 if (app.Environment.IsDevelopment())    //with this condition swagger will be available only in development environment not in production
 {
