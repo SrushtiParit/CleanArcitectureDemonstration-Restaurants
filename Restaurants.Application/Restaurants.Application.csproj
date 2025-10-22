@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Dishes\Commands\DeleteDishes\" />
     <Folder Include="Restaurants\Validators\" />
   </ItemGroup>
 
