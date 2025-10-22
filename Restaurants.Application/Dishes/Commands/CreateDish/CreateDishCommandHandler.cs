@@ -7,9 +7,9 @@ using Restaurants.Domain.Repositories;
 
 namespace Restaurants.Application.Dishes.Commands.CreateDish;
 
-public class CreateDishCommandHandler(ILogger<CreateDishCommandHandler> logger, IRestaurantRepository restaurantRepository, IDishesRepository dishesRepository, IMapper mapper) : IRequestHandler<CreateDishCommand>
+public class CreateDishCommandHandler(ILogger<CreateDishCommandHandler> logger, IRestaurantRepository restaurantRepository, IDishesRepository dishesRepository, IMapper mapper) : IRequestHandler<CreateDishCommand, Guid>
 {
-    public async Task Handle(CreateDishCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateDishCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Creating dish {DishName} for restaurant {RestaurantId}", request.Name, request.RestaurantId);
         var restaurant = await restaurantRepository.GetByIdAsync(request.RestaurantId);
@@ -20,7 +20,7 @@ public class CreateDishCommandHandler(ILogger<CreateDishCommandHandler> logger, 
         }
 
         var dish = mapper.Map<Dish>(request);
-        dishesRepository.CreateDishAsync(dish);
+        return await dishesRepository.CreateDishAsync(dish);
     }
 }
 
