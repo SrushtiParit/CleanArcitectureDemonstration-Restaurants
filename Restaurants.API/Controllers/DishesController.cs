@@ -20,7 +20,7 @@ public class DishesController(IMediator mediator) : ControllerBase
         CancellationToken cancellationToken)
     {       
         command.RestaurantId = restaurantId;
-        await mediator.Send(command, cancellationToken);
+        Guid dishId = await mediator.Send(command, cancellationToken);
         return CreatedAtAction(nameof(GetByIdForRestaurant), new { restaurantId, dishId }, null);
     }
 
