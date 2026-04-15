@@ -6,6 +6,7 @@ using Restaurants.Domain.Repositories;
 using Restaurants.Infrastructure.Persistence;
 using Restaurants.Infrastructure.Repositories;
 using Restaurants.Infrastructure.Seeder;
+using Restaurants.Application.Users;
 
 namespace Restaurants.Infrastructure.Extensions
 {
@@ -22,6 +23,7 @@ namespace Restaurants.Infrastructure.Extensions
 
             services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<RestaurantsDbContext>();
 
+            services.AddScoped<IUserContext, UserContext>();
             services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
             services.AddScoped<IRestaurantRepository, RestaurantRepository>();
             services.AddScoped<IDishesRepository, DishesRepository>();

@@ -1,10 +1,10 @@
 @Restaurants.API_HostAddress = https://localhost:7082
-
+@token = CfDJ8KSgmYBPs4FLiJKae1GuqBg7Un2CGZo9ofY7kPmj0izWpMIxs3yzCcVH8R5YZqubjuqkmEmLJ4-PilHTMOdZ-_z4JU-i1JY07ThialMtI4kAhCtgAXFZxMgdEyqg4gAq35IlmX4L1bkhwOj2whwcmRd0VpwhXG475SjyxbD9tEHgtizTI5fx4x2ZOgbyUjZp8AR74wWfbyY7OfarInvrevhw64aWmE9NnEoCuyBSGgee3EfBBqab6_s9JHIiCJjSwFwYMVF_D2ngLd6Jlyr7UNSdzTCK4bAoPliNUpj860iZ9ZGek5AnSEoZMUFBjE775EB6uabuprmLYvEtN9omAn1L6A9O3z-2jaPeAdcx-jnzPXNnlCW4VYQnvyjKklbSZQBDtsv4_KYd_pjyxbrT8vbvsq0oVuALzvuzhqkmysuUHXBsPaYx8E7AJXSh8aC8v167vrLNR4CQPce3V_0JA64TNoH7ZqYWaSy_1twlBeORo09dEEaFQPwrNnPxVZhN9XoE8iPwYo_kLLCKGbiZxBvLqxJJbYy4-ok2W7obJIpKvXQu8kt7m3ji6v3pJ1WLureX6An95Pn3E38sCBSxJtBMdeNeYytyXwge1TfadfUuOoQykxUZYONGL_b4st43WywwRbb71HkJIzPsexH-s-crN13_qssaBpnAFHwEoU3zIMpG_IPn217rsCk-3idzSA
 
 
 
 GET {{Restaurants.API_HostAddress}}/api/restaurants
-
+Authorization: Bearer{{token}}
 ###
 
 GET {{Restaurants.API_HostAddress}}/api/restaurants/5519ae79-f0b9-4db0-3d92-08dde63eedd4
@@ -54,7 +54,7 @@ Content-Type: application/json
 
 ###
 
-POST {{Restaurants.API_HostAddress}}/register
+POST {{Restaurants.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 {
   "email": "testuser@test.com",
@@ -62,7 +62,7 @@ Content-Type: application/json
 }
 ###
 
-POST {{Restaurants.API_HostAddress}}/login
+POST {{Restaurants.API_HostAddress}}/api/identity/login
 Content-Type: application/json
 {
   "email": "testuser@test.com",
